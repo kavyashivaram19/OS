@@ -15,6 +15,11 @@ int signal(int s)
 void producer()
 {
     int item;
+    if(full==size)
+    {
+        printf("buffer is full");
+        return;
+    }
     printf("enter the item no:");
     scanf("%d",&item);
     empty=wait(empty);
@@ -29,7 +34,10 @@ void consumer()
 {
     int item;
     if(out==-1)
+    {
         printf("Buffer is empty");
+        return;
+    }
     else{
         full=wait(full);
         mutex=wait(mutex);
